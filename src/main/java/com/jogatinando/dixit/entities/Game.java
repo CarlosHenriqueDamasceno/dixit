@@ -1,26 +1,31 @@
 package com.jogatinando.dixit.entities;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.jogatinando.dixit.utils.CardsProvider;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Game {
     private String id;
-    private ArrayList<Player> players;
+    private Map<String, Player> players;
+    private Map<String, Card> cards;
+    private Round round;
 
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
+    public Game(String id){
         this.id = id;
+        this.players = new HashMap<String, Player>();
+        this.cards = CardsProvider.getCards();
     }
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
+
+    public void addPlayer(Player player)
+    {
+        this.players.put(player.getId(), player);
     }
 }

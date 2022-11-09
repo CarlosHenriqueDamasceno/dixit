@@ -1,25 +1,28 @@
 package com.jogatinando.dixit.entities;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 
+@Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class Player {
+	private final String id;
+	private String nick;
+	private String initials;
+	private int score;
+	private Map<String, Card> deck;
+	private String sessionId;
 
-    private String id;
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
+	public Player(String id, String nick, String initials)
+	{
+		this.id = id;
+		this.nick = nick;
+		this.initials = initials;
+		this.score = 0;
+		this.deck = new HashMap<String, Card>();
+	}
 }
+
